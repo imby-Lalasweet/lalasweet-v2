@@ -13,6 +13,7 @@ interface ScrollAnimationProps {
     stagger?: number;
     delay?: number;
     direction?: "up" | "down" | "left" | "right";
+    toggleActions?: string;
 }
 
 export default function ScrollAnimation({
@@ -21,6 +22,7 @@ export default function ScrollAnimation({
     stagger = 0,
     delay = 0,
     direction = "up",
+    toggleActions = "play none none none",
 }: ScrollAnimationProps) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -46,7 +48,7 @@ export default function ScrollAnimation({
             scrollTrigger: {
                 trigger: element,
                 start: "top 85%",
-                toggleActions: "play none none reverse",
+                toggleActions: toggleActions,
             },
         });
     }, { scope: ref });

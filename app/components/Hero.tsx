@@ -66,7 +66,7 @@ export default function Hero() {
                 </div>
 
                 {/* Comparison Rows */}
-                <ScrollAnimation className="w-full max-w-4xl space-y-4" stagger={0.2}>
+                <ScrollAnimation className="w-full max-w-4xl space-y-4" stagger={0.2} toggleActions="play none none none">
                     {comparisonItems.map((item, index) => (
                         <div key={index} className="hero-card grid grid-cols-1 md:grid-cols-2 gap-4">
                             {/* OFF Card */}
