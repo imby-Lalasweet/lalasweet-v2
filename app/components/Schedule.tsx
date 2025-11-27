@@ -1,5 +1,7 @@
 "use client";
 
+import ScrollAnimation from "./ScrollAnimation";
+
 const scheduleItems = [
     { date: "11/7(금) ~ 11/30(일)", title: "서류 접수", active: true },
     { date: "12/3(수) 오후 2시", title: "서류 합격자 발표", active: false },
@@ -12,52 +14,50 @@ const scheduleItems = [
 
 export default function Schedule() {
     return (
-        <section id="schedule" className="py-24 bg-deep-dark">
-            <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
-                    Recruitment Schedule
+        <section id="schedule" className="py-32 bg-deep-dark relative overflow-hidden">
+            {/* Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-blue/5 blur-[150px] rounded-full pointer-events-none" />
+
+            <div className="max-w-4xl mx-auto px-6 relative z-10">
+                <h2 className="text-4xl md:text-6xl font-bold mb-20 text-center">
+                    <span className="gradient-text">Recruitment Schedule</span>
                 </h2>
 
                 <div className="relative">
-                    {/* Vertical Line */}
-                    <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-zinc-800 md:left-1/2 md:-ml-px" />
+                    {/* Vertical Line with Gradient */}
+                    <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-neon-blue/50 to-transparent md:left-1/2 md:-ml-px" />
 
                     <div className="space-y-12">
                         {scheduleItems.map((item, index) => (
-                            <div key={index} className={`relative flex items-center md:justify-between ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                                {/* Dot */}
-                                <div className={`absolute left-0 w-10 h-10 rounded-full border-4 flex items-center justify-center z-10 md:left-1/2 md:-translate-x-1/2 ${item.active
-                                        ? "bg-black border-neon-blue shadow-[0_0_15px_rgba(0,199,242,0.5)]"
-                                        : item.highlight
-                                            ? "bg-neon-blue border-neon-blue"
-                                            : "bg-black border-zinc-700"
-                                    }`}>
-                                    <div className={`w-3 h-3 rounded-full ${item.active || item.highlight ? "bg-white" : "bg-zinc-700"
+                            <ScrollAnimation
+                                key={index}
+                                className={`relative flex items-center md:justify-between ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
+                                stagger={index * 0.1}
+                                direction={index % 2 === 0 ? "left" : "right"}
+                            >
+                                {/* Dot Indicator */}
+                                <div className="absolute left-0 md:left-1/2 w-10 h-10 flex items-center justify-center -ml-5 md:-ml-5 z-10">
+                                    <div className={`w-4 h-4 rounded-full border-2 transition-all duration-normal ${item.active || item.highlight
+                                            ? "bg-neon-blue border-neon-blue shadow-[0_0_15px_rgba(0,199,242,0.6)] scale-125 animate-pulse"
+                                            : "bg-black border-gray-600"
                                         }`} />
                                 </div>
 
-                                {/* Content Spacer for Desktop */}
-                                <div className="hidden md:block w-5/12" />
-
-                                {/* Content */}
-                                <div className="ml-16 md:ml-0 w-full md:w-5/12">
-                                    <div className={`p-6 rounded-xl border transition-all duration-300 hover:border-neon-blue/30 ${item.active
-                                            ? "bg-zinc-900/80 border-neon-blue/50"
-                                            : item.highlight
-                                                ? "bg-neon-blue/10 border-neon-blue/20"
-                                                : "bg-zinc-900/50 border-white/5"
+                                {/* Content Card */}
+                                <div className={`ml-12 md:ml-0 md:w-[45%] p-6 rounded-2xl border transition-all duration-normal hover-lift ${item.highlight
+                                        ? "bg-neon-blue/10 border-neon-blue/50 shadow-glow-sm"
+                                        : "glass-strong border-white/10 hover:border-white/30"
+                                    }`}>
+                                    <div className={`text-sm font-bold mb-2 ${item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
                                         }`}>
-                                        <div className={`text-sm font-bold mb-1 ${item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
-                                            }`}>
-                                            {item.date}
-                                        </div>
-                                        <div className={`text-lg font-bold ${item.active || item.highlight ? "text-white" : "text-gray-400"
-                                            }`}>
-                                            {item.title}
-                                        </div>
+                                        {item.date}
+                                    </div>
+                                    <div className={`text-xl font-bold ${item.active || item.highlight ? "text-white" : "text-gray-400"
+                                        }`}>
+                                        {item.title}
                                     </div>
                                 </div>
-                            </div>
+                            </ScrollAnimation>
                         ))}
                     </div>
                 </div>

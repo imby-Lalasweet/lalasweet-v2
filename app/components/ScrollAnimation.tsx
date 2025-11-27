@@ -14,6 +14,9 @@ interface ScrollAnimationProps {
     delay?: number;
     direction?: "up" | "down" | "left" | "right";
     toggleActions?: string;
+    scale?: boolean;
+    parallax?: boolean;
+    rotate?: boolean;
 }
 
 export default function ScrollAnimation({
@@ -23,6 +26,9 @@ export default function ScrollAnimation({
     delay = 0,
     direction = "up",
     toggleActions = "play none none none",
+    scale = false,
+    parallax = false,
+    rotate = false,
 }: ScrollAnimationProps) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -37,7 +43,7 @@ export default function ScrollAnimation({
         // Otherwise, animate the container itself.
         const targets = stagger > 0 ? element.children : element;
 
-        gsap.from(targets, {
+        const animationProps: gsap.TweenVars = {
             x: xOffset,
             y: yOffset,
             opacity: 0,
@@ -50,7 +56,33 @@ export default function ScrollAnimation({
                 start: "top 85%",
                 toggleActions: toggleActions,
             },
-        });
+        };
+
+        // Add scale animation if enabled
+        if (scale) {
+            animationProps.scale = 0.8;
+        }
+
+        // Add rotation if enabled
+        if (rotate) {
+            animationProps.rotation = direction === "left" ? -15 : direction === "right" ? 15 : 0;
+        }
+
+        gsap.from(targets, animationProps);
+
+        // Parallax effect for the element itself
+        if (parallax) {
+            gsap.to(element, {
+                y: -30,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1,
+                },
+            });
+        }
     }, { scope: ref });
 
     return (

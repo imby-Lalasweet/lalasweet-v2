@@ -35,29 +35,43 @@ export default function FAQ() {
     };
 
     return (
-        <section id="faq" className="py-24 bg-black">
-            <div className="max-w-3xl mx-auto px-6">
-                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                    FAQ
+        <section id="faq" className="py-32 bg-black relative overflow-hidden">
+            {/* Background Glow */}
+            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-neon-blue/5 blur-[120px] rounded-full pointer-events-none" />
+
+            <div className="max-w-3xl mx-auto px-6 relative z-10">
+                <h2 className="text-4xl md:text-6xl font-bold mb-16 text-center">
+                    <span className="gradient-text">FAQ</span>
                 </h2>
 
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="border-b border-white/10 last:border-none">
+                        <div
+                            key={index}
+                            className={`rounded-2xl overflow-hidden border transition-all duration-normal ${openIndex === index
+                                    ? "bg-zinc-900 border-neon-blue/50 shadow-glow-sm"
+                                    : "glass-strong border-white/10 hover:border-white/30"
+                                }`}
+                        >
                             <button
                                 onClick={() => toggleAccordion(index)}
-                                className="w-full flex items-center justify-between py-6 text-left hover:text-neon-blue transition-colors group"
+                                className="w-full flex items-center justify-between p-8 text-left hover:bg-white/5 transition-colors group"
                             >
-                                <span className="text-lg font-medium pr-8 group-hover:text-neon-blue transition-colors">Q. {faq.question}</span>
+                                <span className={`text-xl font-bold transition-colors ${openIndex === index ? "text-neon-blue" : "text-white group-hover:text-neon-blue"
+                                    }`}>
+                                    Q. {faq.question}
+                                </span>
                                 <ChevronDown
-                                    className={`w-5 h-5 text-gray-500 group-hover:text-neon-blue transition-all duration-300 ${openIndex === index ? "rotate-180" : ""}`}
+                                    className={`w-6 h-6 text-gray-400 transition-transform duration-300 ${openIndex === index ? "rotate-180 text-neon-blue" : "group-hover:text-white"
+                                        }`}
                                 />
                             </button>
                             <div
                                 ref={el => { contentRefs.current[index] = el }}
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                                    }`}
                             >
-                                <div className="pb-8 text-gray-400 leading-relaxed whitespace-pre-line">
+                                <div className="p-8 pt-0 text-gray-300 leading-relaxed whitespace-pre-line text-lg">
                                     {faq.answer}
                                 </div>
                             </div>

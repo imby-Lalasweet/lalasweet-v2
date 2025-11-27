@@ -49,22 +49,25 @@ export default function JobDescription() {
     };
 
     return (
-        <section id="jd" className="py-24 bg-black">
-            <div className="max-w-4xl mx-auto px-6">
-                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                    Job Description
+        <section id="jd" className="py-32 bg-black relative overflow-hidden">
+            {/* Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-blue/5 blur-[120px] rounded-full pointer-events-none" />
+
+            <div className="max-w-5xl mx-auto px-6 relative z-10">
+                <h2 className="text-4xl md:text-6xl font-bold mb-16 text-center">
+                    <span className="gradient-text">Job Description</span>
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                     {jobs.map((job, index) => (
-                        <div key={index} className="rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
+                        <div key={index} className="rounded-3xl overflow-hidden glass-strong border border-white/10 hover-lift hover-glow transition-all duration-normal">
                             <button
                                 onClick={() => toggleAccordion(index)}
-                                className="w-full flex items-center justify-between p-6 text-left hover:bg-zinc-800 transition-colors group"
+                                className="w-full flex items-center justify-between p-8 text-left hover:bg-white/5 transition-all duration-normal group"
                             >
-                                <span className="text-xl font-bold text-white group-hover:text-neon-blue transition-colors">{job.title}</span>
+                                <span className="text-2xl font-bold text-white group-hover:text-neon-blue transition-colors">{job.title}</span>
                                 <ChevronDown
-                                    className={`w-6 h-6 text-neon-blue transform transition-transform duration-300 ${openIndices.includes(index) ? "rotate-180" : ""}`}
+                                    className={`w-7 h-7 text-neon-blue transform transition-all duration-normal group-hover:scale-110 ${openIndices.includes(index) ? "rotate-180" : ""}`}
                                 />
                             </button>
                             <div
@@ -83,13 +86,13 @@ export default function JobDescription() {
                     ))}
                 </div>
 
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-zinc-900 p-8 rounded-xl border border-white/5">
-                        <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
-                            <span className="w-1 h-6 bg-neon-blue rounded-full" />
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="glass-strong p-10 rounded-3xl border border-white/10 hover-lift hover-glow transition-all duration-normal">
+                        <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                            <span className="w-1.5 h-8 bg-neon-blue rounded-full animate-pulse" />
                             공통 자격요건
                         </h3>
-                        <ul className="space-y-4 text-gray-400 list-disc pl-5 text-sm leading-relaxed">
+                        <ul className="space-y-4 text-gray-400 list-disc pl-5 text-base leading-relaxed">
                             {commonRequirements.map((req, i) => (
                                 <li key={i}>{req}</li>
                             ))}

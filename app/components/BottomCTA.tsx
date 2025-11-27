@@ -26,28 +26,47 @@ const links = [
 
 export default function BottomCTA() {
     return (
-        <section className="py-24 bg-deep-dark">
-            <div className="max-w-4xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <section className="py-32 bg-deep-dark relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue/5 to-transparent pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-neon-blue/10 blur-[100px] rounded-full pointer-events-none animate-pulse" />
+
+            <div className="max-w-5xl mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {links.map((link, index) => (
                         <Link
                             key={index}
                             href={link.href}
                             target="_blank"
-                            className={`group block p-8 rounded-xl transition-all duration-300 relative overflow-hidden ${link.highlight
-                                ? "bg-neon-blue hover:bg-neon-blue/90 col-span-1 md:col-span-2 text-center shadow-[0_0_20px_rgba(0,199,242,0.3)] hover:shadow-[0_0_40px_rgba(0,199,242,0.5)]"
-                                : "bg-zinc-900 hover:bg-zinc-800 border border-white/5 hover:border-white/10"
+                            className={`group block p-10 rounded-3xl transition-all duration-normal relative overflow-hidden hover-lift ${link.highlight
+                                    ? "bg-gradient-to-br from-neon-blue to-neon-blue/80 col-span-1 md:col-span-2 text-center shadow-glow-lg hover:shadow-glow-lg hover:scale-105 animate-glow"
+                                    : "glass-strong border border-white/10 hover:border-neon-blue/30 hover-glow"
                                 } ${index === 2 ? "md:col-span-2 text-center" : ""}`}
                         >
+                            {/* Shimmer Effect on Hover */}
+                            {!link.highlight && (
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-slower" />
+                            )}
+
                             <span
-                                className={`text-lg font-bold flex items-center justify-center gap-2 ${link.highlight ? "text-black" : "text-white group-hover:text-neon-blue transition-colors"
+                                className={`text-xl md:text-2xl font-bold flex items-center justify-center gap-3 relative z-10 ${link.highlight
+                                        ? "text-black"
+                                        : "text-white group-hover:text-neon-blue transition-colors"
                                     }`}
                             >
                                 {link.text}
                                 {!link.highlight && (
-                                    <ArrowUpRight className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                    <ArrowUpRight className="w-6 h-6 opacity-50 group-hover:opacity-100 transition-all duration-normal group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                )}
+                                {link.highlight && (
+                                    <span className="text-4xl ml-2 group-hover:animate-float">→</span>
                                 )}
                             </span>
+
+                            {/* Ripple Effect for Highlight Button */}
+                            {link.highlight && (
+                                <div className="absolute inset-0 rounded-3xl bg-white/20 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-20 transition-all duration-slower" />
+                            )}
                         </Link>
                     ))}
                 </div>
