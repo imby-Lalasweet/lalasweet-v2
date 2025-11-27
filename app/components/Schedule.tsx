@@ -1,4 +1,3 @@
-```
 "use client";
 
 import { useState, useEffect } from "react";
@@ -28,10 +27,10 @@ export default function Schedule() {
             const updatedItems = scheduleItems.map(item => {
                 const start = item.startDate;
                 const end = item.endDate;
-                
+
                 // 날짜 범위 내에 있거나, 당일인 경우 active 처리
                 const isActive = today >= start && today <= end;
-                
+
                 return { ...item, active: isActive };
             });
             setItems(updatedItems);
@@ -66,27 +65,23 @@ export default function Schedule() {
                             >
                                 {/* Dot Indicator - Centered for all screens */}
                                 <div className="absolute left-1/2 w-10 h-10 flex items-center justify-center -ml-5 z-10">
-                                    <div className={`w - 4 h - 4 rounded - full border - 2 transition - all duration - normal ${
-    item.active || item.highlight
-    ? "bg-neon-blue border-neon-blue shadow-[0_0_15px_rgba(0,199,242,0.6)] scale-125 animate-pulse"
-    : "bg-black border-gray-600"
-} `} />
+                                    <div className={`w-4 h-4 rounded-full border-2 transition-all duration-normal ${item.active || item.highlight
+                                        ? "bg-neon-blue border-neon-blue shadow-[0_0_15px_rgba(0,199,242,0.6)] scale-125 animate-pulse"
+                                        : "bg-black border-gray-600"
+                                        }`} />
                                 </div>
 
                                 {/* Content Card - Centered single column for all screens */}
-                                <div className={`w - full max - w - xl p - 6 rounded - 2xl border transition - all duration - normal hover - lift relative z - 20 mx - auto ${
-    item.highlight
-    ? "bg-neon-blue/10 border-neon-blue/50 shadow-glow-sm"
-    : "glass-strong border-white/10 hover:border-white/30"
-} `}>
-                                    <div className={`text - sm font - bold mb - 2 ${
-    item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
-} `}>
+                                <div className={`w-full max-w-xl p-6 rounded-2xl border transition-all duration-normal hover-lift relative z-20 mx-auto ${item.highlight
+                                    ? "bg-neon-blue/10 border-neon-blue/50 shadow-glow-sm"
+                                    : "glass-strong border-white/10 hover:border-white/30"
+                                    }`}>
+                                    <div className={`text-sm font-bold mb-2 ${item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
+                                        }`}>
                                         {item.date}
                                     </div>
-                                    <div className={`text - xl font - bold ${
-    item.active || item.highlight ? "text-white" : "text-gray-400"
-} `}>
+                                    <div className={`text-xl font-bold ${item.active || item.highlight ? "text-white" : "text-gray-400"
+                                        }`}>
                                         {item.title}
                                     </div>
                                 </div>
@@ -98,4 +93,3 @@ export default function Schedule() {
         </section>
     );
 }
-```
