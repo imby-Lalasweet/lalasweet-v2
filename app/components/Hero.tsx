@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollAnimation from "./ScrollAnimation";
@@ -61,15 +63,28 @@ export default function Hero() {
 
             <div className="max-w-7xl mx-auto px-6 flex flex-col items-center text-center relative z-10">
                 {/* Enhanced Typography */}
-                <h1 className="hero-text text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tight">
+                <h1 className="hero-text text-3xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight tracking-tight">
                     라라스윗 마케팅 인턴 <span className="gradient-text">9기 공개채용</span>
                 </h1>
                 <p className="hero-text text-xl md:text-2xl text-gray-300 mb-16 max-w-3xl leading-relaxed">
                     단순한 경험을 넘어, 진짜 성과를 만드는 마케터로 성장하세요.
                 </p>
 
+                {/* Apply Now Button */}
+                <Link
+                    href="https://lalasweet.career.greetinghr.com/ko/o/186825"
+                    target="_blank"
+                    className="group relative z-50 inline-flex items-center justify-center gap-3 px-8 py-4 mb-24 rounded-full bg-neon-blue text-black font-bold text-xl hover:scale-105 hover:shadow-glow-lg transition-all duration-normal animate-glow animate-fade-in-up border-none ring-0 outline-none"
+                >
+                    <span>바로 지원하기</span>
+                    <ArrowUpRight className="w-6 h-6 transition-transform duration-normal group-hover:translate-x-1 group-hover:-translate-y-1" />
+
+                    {/* Ripple Effect */}
+                    <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-20 transition-all duration-slower" />
+                </Link>
+
                 {/* Hero Image with enhanced shadow */}
-                <div className="hero-text relative w-full max-w-2xl aspect-video mb-24 rounded-2xl overflow-hidden shadow-floating hover:shadow-glow-lg transition-shadow duration-slow group">
+                <div className="hero-text relative w-full max-w-sm aspect-video mb-24 rounded-2xl overflow-hidden shadow-floating hover:shadow-glow-lg transition-shadow duration-slow group">
                     <Image
                         src="/hero-switch3.png"
                         alt="Hero Switch"
