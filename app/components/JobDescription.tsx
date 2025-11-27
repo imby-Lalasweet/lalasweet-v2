@@ -92,7 +92,7 @@ export default function JobDescription() {
                             <span className="w-1.5 h-8 bg-neon-blue rounded-full animate-pulse" />
                             공통 자격요건
                         </h3>
-                        <ul className="space-y-4 text-gray-400 list-disc pl-5 text-base leading-relaxed">
+                        <ul className="space-y-4 text-gray-400 list-disc pl-5 text-base leading-relaxed break-keep">
                             {commonRequirements.map((req, i) => (
                                 <li key={i}>{req}</li>
                             ))}
@@ -103,16 +103,16 @@ export default function JobDescription() {
                             <span className="w-1 h-6 bg-neon-blue rounded-full" />
                             공통 우대사항
                         </h3>
-                        <ul className="space-y-4 text-gray-400 list-disc pl-5 text-sm mb-8 leading-relaxed">
+                        <ul className="space-y-4 text-gray-400 list-disc pl-5 text-base mb-8 leading-relaxed break-keep">
                             {commonPreferences.map((pref, i) => (
                                 <li key={i}>{pref}</li>
                             ))}
                         </ul>
                         <div className="bg-neon-blue/5 p-6 rounded-lg border border-neon-blue/10">
-                            <p className="text-neon-blue text-sm font-medium leading-relaxed">
+                            <p className="text-neon-blue text-sm font-medium leading-relaxed break-keep">
                                 "라라스윗 마케팅팀은 성장 욕심 있는 사람과 함께하고 싶습니다. <br />
                                 아직 완벽하지 않아도 괜찮아요. <br />
-                                하지만 적어도 <span className="text-white font-bold">'왜 이렇게 할까요?', '다른 방식은 없을까요?'</span>라고 스스로 제안하는 사람을 찾고 있어요!"
+                                하지만 적어도 <span className="text-white font-bold">'왜 이렇게 할까요?', '다른 방식은 없을까요?'</span><br />라고 스스로 제안하는 사람을 찾고 있어요!"
                             </p>
                         </div>
                     </div>
