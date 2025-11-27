@@ -25,7 +25,7 @@ export default function Schedule() {
 
                 <div className="relative">
                     {/* Vertical Line with Gradient */}
-                    <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-neon-blue/50 to-transparent md:left-1/2 md:-ml-px" />
+                    <div className="hidden md:block absolute left-[19px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-neon-blue/50 to-transparent md:left-1/2 md:-ml-px" />
 
                     <div className="space-y-12">
                         {scheduleItems.map((item, index) => (
@@ -36,20 +36,23 @@ export default function Schedule() {
                                 direction={index % 2 === 0 ? "left" : "right"}
                             >
                                 {/* Dot Indicator */}
-                                <div className="absolute left-0 md:left-1/2 w-10 h-10 flex items-center justify-center -ml-5 md:-ml-5 z-10">
+                                <div className="hidden md:flex absolute left-0 md:left-1/2 w-10 h-10 items-center justify-center -ml-5 md:-ml-5 z-10">
                                     <div className={`w-4 h-4 rounded-full border-2 transition-all duration-normal ${item.active || item.highlight
-                                            ? "bg-neon-blue border-neon-blue shadow-[0_0_15px_rgba(0,199,242,0.6)] scale-125 animate-pulse"
-                                            : "bg-black border-gray-600"
+                                        ? "bg-neon-blue border-neon-blue shadow-[0_0_15px_rgba(0,199,242,0.6)] scale-125 animate-pulse"
+                                        : "bg-black border-gray-600"
                                         }`} />
                                 </div>
 
                                 {/* Content Card */}
-                                <div className={`ml-12 md:ml-0 md:w-[45%] p-6 rounded-2xl border transition-all duration-normal hover-lift ${item.highlight
-                                        ? "bg-neon-blue/10 border-neon-blue/50 shadow-glow-sm"
-                                        : "glass-strong border-white/10 hover:border-white/30"
+                                <div className={`w-full md:w-[45%] p-6 rounded-2xl border transition-all duration-normal hover-lift ${item.highlight
+                                    ? "bg-neon-blue/10 border-neon-blue/50 shadow-glow-sm"
+                                    : "glass-strong border-white/10 hover:border-white/30"
                                     }`}>
-                                    <div className={`text-sm font-bold mb-2 ${item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
+                                    <div className={`text-sm font-bold mb-2 flex items-center gap-2 ${item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
                                         }`}>
+                                        {(item.active || item.highlight) && (
+                                            <span className="md:hidden w-2 h-2 rounded-full bg-neon-blue animate-pulse" />
+                                        )}
                                         {item.date}
                                     </div>
                                     <div className={`text-xl font-bold ${item.active || item.highlight ? "text-white" : "text-gray-400"

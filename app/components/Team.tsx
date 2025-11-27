@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 const interviews = [
     {
@@ -28,6 +30,10 @@ const interviews = [
             '고객이 열광하는 포인트를 분석하고, 이를 기반으로 브랜드 메시지 전략과 확산 방법론을 설계합니다.\n\n' +
             '특히 라라스윗 인지셀은 단순한 조회수나 노출이 아닌,\n"온라인에서 콘텐츠를 본 고객들로 하여금 오프라인에서 실제로 구매하게 만드는" 마케팅 방법론 발굴에 집중하고 있어요.\n\n' +
             '감이 아닌 논리로 본인만의 콘텐츠를 설계하고,\n결과로 말하는 콘텐츠 마케팅을 경험하고 싶은 모든 분을 환영합니다!',
+        link: {
+            text: "인턴에서 최연소 리더까지, 인지셀 리더 인터뷰 보러가기",
+            url: "https://lalasweet.career.greetinghr.com/ko/lalasweetleaderinterview1"
+        }
     },
 ];
 
@@ -65,8 +71,8 @@ export default function Team() {
                                 key={interview.id}
                                 onClick={() => setActiveTab(interview.id)}
                                 className={`px-8 py-3 rounded-full text-base font-semibold transition-all duration-normal ${activeTab === interview.id
-                                        ? "bg-neon-blue text-black shadow-glow-md scale-105"
-                                        : "text-gray-400 hover:text-white hover:bg-white/5"
+                                    ? "bg-neon-blue text-black shadow-glow-md scale-105"
+                                    : "text-gray-400 hover:text-white hover:bg-white/5"
                                     }`}
                             >
                                 {interview.name} ({interview.role})
@@ -112,6 +118,21 @@ export default function Team() {
                                 <p className="text-gray-300 leading-loose whitespace-pre-wrap text-lg md:text-xl">
                                     {interview.content}
                                 </p>
+
+                                {interview.link && (
+                                    <div className="mt-8">
+                                        <Link
+                                            href={interview.link.url}
+                                            target="_blank"
+                                            className="inline-flex items-center gap-2 text-neon-blue hover:text-white transition-colors duration-normal group/link"
+                                        >
+                                            <span className="text-lg font-bold border-b border-neon-blue/30 group-hover/link:border-white pb-0.5 transition-all duration-normal">
+                                                {interview.link.text}
+                                            </span>
+                                            <ArrowUpRight className="w-5 h-5 transition-transform duration-normal group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
