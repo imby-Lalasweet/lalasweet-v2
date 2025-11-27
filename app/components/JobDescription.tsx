@@ -120,8 +120,8 @@ export default function JobDescription() {
 
                 {/* Working Conditions */}
                 <div className="mt-12 bg-zinc-900 p-8 rounded-xl text-center border border-white/5">
-                    <h4 className="text-white font-bold mb-4 text-lg">근무 조건</h4>
-                    <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-gray-400 text-sm">
+                    <h4 className="text-white font-bold mb-4 text-xl">근무 조건</h4>
+                    <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-gray-400 text-base">
                         <span className="flex items-center justify-center gap-2">
                             <span className="w-1.5 h-1.5 bg-neon-blue rounded-full" />
                             급여 수준 : 월 220만원
@@ -131,7 +131,7 @@ export default function JobDescription() {
                             근무 시간 : 월-금 09:00 ~ 18:00 (휴게시간 포함)
                         </span>
                     </div>
-                    <p className="text-gray-500 text-sm mt-4">
+                    <p className="text-gray-500 text-base mt-4">
                         서울시 강남구 영동대로 333 (삼성역 도보 9분 거리 위치)
                     </p>
                 </div>
