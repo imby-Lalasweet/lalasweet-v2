@@ -54,9 +54,9 @@ export default function Schedule() {
 
                 <div className="relative">
                     {/* Vertical Line with Gradient - Centered for all screens */}
-                    <div className="absolute left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-neon-blue/50 to-transparent -ml-px" />
+                    <div className="absolute left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-neon-blue/50 to-transparent -ml-px z-0" />
 
-                    <div className="space-y-12">
+                    <div className="space-y-12 relative z-10">
                         {items.map((item, index) => (
                             <ScrollAnimation
                                 key={index}
