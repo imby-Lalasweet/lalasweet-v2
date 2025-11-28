@@ -80,10 +80,8 @@ export default function Schedule() {
                                     }`}>
                                     <div className={`text-sm font-bold mb-2 flex items-center gap-2 ${item.active || item.highlight ? "text-neon-blue" : "text-gray-500"
                                         }`}>
-                                        {/* Mobile Active Indicator */}
-                                        {(item.active || item.highlight) && (
-                                            <span className="md:hidden w-2 h-2 rounded-full bg-neon-blue animate-pulse" />
-                                        )}
+                                        {/* Mobile Active Indicator - Always render to maintain alignment */}
+                                        <span className={`md:hidden w-2 h-2 rounded-full flex-shrink-0 ${item.active || item.highlight ? "bg-neon-blue animate-pulse" : "bg-transparent"}`} />
                                         {item.date}
                                     </div>
                                     <div className={`text-xl font-bold ${item.active || item.highlight ? "text-white" : "text-gray-400"
